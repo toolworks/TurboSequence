@@ -414,7 +414,11 @@ public:
 			//UE_LOG(LogTemp, Warning, TEXT("%d"), LodModel.NumVertices);
 			// 	const FSkeletalMeshLODRenderData& LODRenderData = RenderData->LODRenderData[i];
 			FMeshDescription MeshDescription;
+#if (ENGINE_MAJOR_VERSION >= 5) && (ENGINE_MINOR_VERSION >= 4)
 			LodModel.GetMeshDescription(SkeletalMesh, LodIndex, MeshDescription);
+#else
+			LodModel.GetMeshDescription(MeshDescription, SkeletalMesh);
+#endif
 			
 
 			// UE_LOG(LogTemp, Warning, TEXT("%d"), MeshDescription.Vertices().Num());
